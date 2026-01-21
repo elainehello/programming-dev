@@ -1,0 +1,6 @@
+Initialize app root directory
+uvicorn app.main:app --reload --port 8000
+
+Create Redis server container root directory
+docker compose up -d
+

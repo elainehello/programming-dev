@@ -6,6 +6,7 @@ from app.config import settings
 
 import httpx
 import redis.asyncio as redis
+from fastapi.responses import Response
 
 # Configure Structure Logging
 logging.basicConfig(
@@ -63,3 +64,24 @@ async def health_check():
         "status": "Sentinel is active", 
         "redis": redis_status
     }
+
+@app.get("/dev/generate-token")
+async def generate_token(user_id: str = "user_12345"):
+    """Development only - generates test JWT tokens"""
+    import jwt
+    import datetime
+
+    payload = {
+        "sub": user_id,
+        "scopes": ["read", "write"],
+        "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=24),
+    }
+    token : str = jwt.encode(payload, settings.JWT_SECRET, algorithm=settings.ALGORITHM)
+    return {
+        "token": token, 
+        "bearer": f"Bearer {token}"
+    }
+
+@app.get("/favicon.ico")
+async def favicon():
+    return Response(status_code=204)
