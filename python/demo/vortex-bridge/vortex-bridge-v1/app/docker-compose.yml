@@ -1,13 +1,14 @@
-version: '3.8'
+version: "3.8"
 
 services:
   redis:
     image: redis:7-alpine
-    container_name: redis-sentinel
+    container_name: vortex-redis
     ports:
       - "6379:6379"
     volumes:
-      - redis-data:/data
+      - redis_data:/data
+    command: redis-server --appendonly yes
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
@@ -17,8 +18,7 @@ services:
       - shared-vortex-network
 
 volumes:
-  redis-data:
-    driver: local
+  redis_data:
 
 networks:
   shared-vortex-network:
