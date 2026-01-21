@@ -30,7 +30,7 @@ pip install -r [requirements.txt](http://_vscodecontentref_/0)
 python -m app.worker
 ```
 
-## Generate Jons
+## Generate Jobs
 ```bash
 cd vortex-bridge-v1
 python -m app.producer_test
