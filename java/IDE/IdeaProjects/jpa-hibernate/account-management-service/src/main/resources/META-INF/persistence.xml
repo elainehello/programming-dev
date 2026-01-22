@@ -6,6 +6,9 @@
         <!-- Entities will go here -->
         <!-- <class>com.acme.platform.account.domain.Account</class> -->
 
+        <class>org.acme.platform.account.domain.Account</class>
+        <class>org.acme.platform.account.domain.PurchaseOrder</class>
+
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1"/>

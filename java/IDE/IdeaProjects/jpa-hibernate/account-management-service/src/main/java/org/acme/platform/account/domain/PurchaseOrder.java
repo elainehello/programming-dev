@@ -16,7 +16,7 @@ public class PurchaseOrder {
     private LocalDateTime deliveredAt;
 
     // ORM
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id")
     private Account account;
 
