@@ -62,6 +62,18 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
             </plugin>
+
+        <!-- exec-maven-plugin does require <mainClass> -->
+            <!-- suggested enterprise if you want to execute
+            /# mvn exec:java pointing to the com.../../.Main <classMain> file-->
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>3.6.3</version>
+            <configuration>
+                <mainClass>org.acme.platform.Main</mainClass>
+            </configuration>
+        </plugin>
         </plugins>
     </build>
 
