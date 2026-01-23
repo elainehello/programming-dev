@@ -4,9 +4,9 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <!-- Entities will go here -->
-        <!-- <class>com.acme.platform.account.domain.Account</class> -->
+        <!-- <class>com.acme.platform.account.domain.Customer</class> -->
 
-        <class>org.acme.platform.account.domain.Account</class>
+        <class>org.acme.platform.account.domain.Customer</class>
         <class>org.acme.platform.account.domain.PurchaseOrder</class>
 
         <properties>
@@ -15,6 +15,8 @@
             <!-- updated h2 database -->
             <property name="jakarta.persistence.jdbc.url"
                       value="jdbc:h2:file:./data/accountdb;DB_CLOSE_DELAY=-1"/>
+            <!-- optional to the database in mem
+                      value="jdbc:h2:mem:testdb -->            
 
             <property name="jakarta.persistence.jdbc.user" value="sa"/>
             <property name="jakarta.persistence.jdbc.password" value=""/>

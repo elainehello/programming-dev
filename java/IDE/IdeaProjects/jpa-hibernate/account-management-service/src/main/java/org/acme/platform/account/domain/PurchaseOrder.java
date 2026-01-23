@@ -1,7 +1,6 @@
 package org.acme.platform.account.domain;
 
 import jakarta.persistence.*;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -10,25 +9,26 @@ import java.time.LocalDateTime;
 public class PurchaseOrder {
 
     @Id
+    @Column(name = "order_id")
     private String id;
 
+    @Column(name = "order_status")
     private String status;
 
+    @Column(name = "order_purchase_timestamp")
     private LocalDateTime purchasedAt;
+
+    @Column(name = "order_delivered_customer_date")
     private LocalDateTime deliveredAt;
 
-    // New: order amount
     private BigDecimal amount;
 
-    // ORM
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "account_id")
-    private Account account;
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
-    // Default constrictor required by JPA as per said
     protected PurchaseOrder() {}
 
-    // Constructor
     public PurchaseOrder(String id, String status, LocalDateTime purchasedAt, BigDecimal amount) {
         this.id = id;
         this.status = status;
@@ -36,12 +36,9 @@ public class PurchaseOrder {
         this.amount = amount;
     }
 
-    // Package-private setter for bidirectional link
-    void setAccount(Account account) {
-        this.account = account;
+    void setCustomer(Customer customer) {
+        this.customer = customer;
     }
-
-    // Getters
 
     public String getId() {
         return id;
@@ -49,5 +46,13 @@ public class PurchaseOrder {
 
     public String getStatus() {
         return status;
+    }
+
+    public LocalDateTime getPurchasedAt() {
+        return purchasedAt;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
     }
 }
