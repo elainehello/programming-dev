@@ -2,6 +2,7 @@ package org.acme.platform.account.domain;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,8 +13,12 @@ public class PurchaseOrder {
     private String id;
 
     private String status;
+
     private LocalDateTime purchasedAt;
     private LocalDateTime deliveredAt;
+
+    // New: order amount
+    private BigDecimal amount;
 
     // ORM
     @ManyToOne(fetch = FetchType.LAZY)
@@ -24,10 +29,11 @@ public class PurchaseOrder {
     protected PurchaseOrder() {}
 
     // Constructor
-    public PurchaseOrder(String id, String status, LocalDateTime purchasedAt) {
+    public PurchaseOrder(String id, String status, LocalDateTime purchasedAt, BigDecimal amount) {
         this.id = id;
         this.status = status;
         this.purchasedAt = purchasedAt;
+        this.amount = amount;
     }
 
     // Package-private setter for bidirectional link
