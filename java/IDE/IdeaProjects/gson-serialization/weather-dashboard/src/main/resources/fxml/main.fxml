@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.acme.weather.ui.MainController"
+            prefHeight="700.0" prefWidth="900.0">
+
+    <top>
+        <VBox spacing="15" styleClass="header">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="Weather Dashboard" styleClass="title"/>
+            <Label text="Tutiempo API" styleClass="subtitle"/>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Latitude:"/>
+                <TextField fx:id="latitudeTextField" prefWidth="120"/>
+
+                <Label text="Longitude:"/>
+                <TextField fx:id="longitudeTextField" prefWidth="120"/>
+
+                <Button fx:id="searchButton" text="Search" onAction="#handleSearch"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="scroll-pane">
+            <VBox spacing="20" styleClass="weather-display">
+                <padding>
+                    <Insets top="20" right="40" bottom="20" left="40"/>
+                </padding>
+
+                <!-- Current Weather -->
+                <VBox spacing="10" styleClass="current-weather">
+                    <Label fx:id="locationLabel" styleClass="location-name" text="--"/>
+                    <Label fx:id="dateLabel" styleClass="date" text="--"/>
+                    <Label fx:id="temperatureLabel" styleClass="temperature" text="--°C"/>
+                    <Label fx:id="descriptionLabel" styleClass="description" text="--"/>
+
+                    <HBox spacing="30" styleClass="weather-details">
+                        <Label fx:id="humidityLabel" text="Humidity: --"/>
+                        <Label fx:id="windLabel" text="Wind: --"/>
+                    </HBox>
+
+                    <HBox spacing="30" styleClass="sun-info">
+                        <Label fx:id="sunriseLabel" text="Sunrise: --"/>
+                        <Label fx:id="sunsetLabel" text="Sunset: --"/>
+                    </HBox>
+                </VBox>
+
+                <Separator/>
+
+                <!-- 7-Day Forecast -->
+                <VBox spacing="10">
+                    <Label text="7-Day Forecast" styleClass="forecast-title"/>
+                    <VBox fx:id="forecastContainer" spacing="8" styleClass="forecast-list"/>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>
