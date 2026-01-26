@@ -1,19 +1,17 @@
-version: "3.9"
-
 services:
   nginx:
-  image: nginx:1.25-alpine
-  ports:
-  - "8080:80"
-  volumes:
-    - ../nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-    - ../nginx/includes:/etc/nginx/includes:ro
-    - ../nginx/sites:/etc/nginx/sites:ro
-    - ./logs:/var/log/nginx
-  depends_on:
-    - api
+    image: ${NGINX_IMAGE}
+    ports:
+      - "${NGINX_PORT}:80"
+    volumes:
+      - ../nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ../nginx/includes:/etc/nginx/includes:ro
+      - ../nginx/sites:/etc/nginx/sites:ro
+      - ./logs:/var/log/nginx
+    depends_on:
+      - ${API_SERVICE_NAME}
 
   api:
     build: ../apps/api
     expose:
-      - "8080"
+      - "${API_PORT}"
