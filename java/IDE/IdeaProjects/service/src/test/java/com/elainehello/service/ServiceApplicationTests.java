@@ -1,10 +1,8 @@
 package com.elainehello.service;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class ServiceApplicationTests {
+class ServiceApplicationTests extends PostgresContainerTestBase {
 
 	@Test
 	void contextLoads() {

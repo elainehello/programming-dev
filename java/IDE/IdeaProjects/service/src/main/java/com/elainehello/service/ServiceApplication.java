@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.web.servlet.function.RouterFunction;
 import org.springframework.web.servlet.function.ServerResponse;
+import org.springframework.data.annotation.Id;
 
 import java.util.Map;
 
@@ -20,15 +21,15 @@ public class ServiceApplication {
 
 	@Bean
 	RouterFunction<ServerResponse> myRoutes(CustomerRepository repository) {
-		return route()
-				.GET("/customers", request -> ServerResponse.ok().body(repository.findAll()))
-				.GET("/hello", request -> ServerResponse.ok().body(Map.of("message", "Hello World")))
-				.build();
+		return route()//
+			.GET("/customers", request -> ServerResponse.ok().body(repository.findAll()))//
+			.GET("/hello", request -> ServerResponse.ok().body(Map.of("message", "Hello World")))//
+			.build();
 	}
 
 }
 
-record Customer(int id, String name) {
+record Customer(@Id Integer id, String name) {
 }
 
 interface CustomerRepository extends ListCrudRepository<Customer, Integer> {

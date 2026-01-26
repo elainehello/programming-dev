@@ -31,7 +31,7 @@ java -v
 
 ```bash
 # -d flag runs the container in detached mode (background)
-docker compose up -d
+docker compose up -d postgres
 ```
 
 Then, in another terminal window, run the Spring Boot application:
@@ -60,3 +60,13 @@ To generate a GraalVM native image executable, use the following command:
 cd target
 ./service
 ```
+
+sudo usermod -aG docker $USER
+newgrp docker
+
+./mvnw clean package -DskipTests
+
+./mvnw spring-boot:build-image
+
+# Run the app container on the same Docker Compose network as Postgres
+docker run --rm --name service-app --network service_default -p 8080:8080 -e SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/mydatabase -e SPRING_DATASOURCE_USERNAME=myuser -e SPRING_DATASOURCE_PASSWORD=secret docker.io/library/service:0.0.1-SNAPSHOT
