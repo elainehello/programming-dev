@@ -61,12 +61,45 @@ cd target
 ./service
 ```
 
+## Running with Docker
+
+### Setup Docker Permissions (one-time)
+
+```bash
 sudo usermod -aG docker $USER
 newgrp docker
+```
 
+### Build and Run with Docker Compose
+
+Build the application and create a Docker image:
+
+```bash
 ./mvnw clean package -DskipTests
-
 ./mvnw spring-boot:build-image
+```
 
-# Run the app container on the same Docker Compose network as Postgres
-docker run --rm --name service-app --network service_default -p 8080:8080 -e SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/mydatabase -e SPRING_DATASOURCE_USERNAME=myuser -e SPRING_DATASOURCE_PASSWORD=secret docker.io/library/service:0.0.1-SNAPSHOT
+Start the PostgreSQL database:
+
+```bash
+docker compose up -d postgres
+```
+
+Run the application container (connects to the compose Postgres network):
+
+```bash
+docker run --rm --name service-app --network service_default -p 8080:8080 \
+  -e SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/mydatabase \
+  -e SPRING_DATASOURCE_USERNAME=myuser \
+  -e SPRING_DATASOURCE_PASSWORD=secret \
+  docker.io/library/service:0.0.1-SNAPSHOT
+```
+
+Access the application at [http://localhost:8080](http://localhost:8080)
+
+To stop the containers:
+
+```bash
+docker stop service-app
+docker compose down
+```
