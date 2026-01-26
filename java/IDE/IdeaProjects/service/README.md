@@ -100,6 +100,5 @@ Access the application at [http://localhost:8080](http://localhost:8080)
 To stop the containers:
 
 ```bash
-docker stop service-app
 docker compose down
 ```
