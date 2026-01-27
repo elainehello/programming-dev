@@ -2,3 +2,4 @@
 2026/01/26 21:54:16 [emerg] 1#1: "log_format" directive is not allowed here in /etc/nginx/includes/logging.conf:10
 2026/01/26 21:54:20 [emerg] 1#1: "log_format" directive is not allowed here in /etc/nginx/includes/logging.conf:10
 2026/01/26 21:54:33 [emerg] 1#1: "log_format" directive is not allowed here in /etc/nginx/includes/logging.conf:10
+2026/01/27 09:22:46 [emerg] 1#1: unknown "body_bytes" variable
