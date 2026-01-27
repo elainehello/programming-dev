@@ -9,7 +9,7 @@ services:
       - ../nginx/sites:/etc/nginx/sites:ro
       - ./logs:/var/log/nginx
     depends_on:
-      - ${API_SERVICE_NAME}
+      - api
 
   api:
     build: ../apps/api
