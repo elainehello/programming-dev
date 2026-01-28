@@ -7,7 +7,7 @@ from app.domain.events.base import DomainEvent
 @dataclass # metaprogramming notation
 class ProjectCreateEvent(DomainEvent):
     """Event fired when a project is created"""
-    name: str = None
+    name: Optional[str] = None
     description: Optional[str] = None
 
 @dataclass
@@ -20,5 +20,4 @@ class ProjectUpdatedEvent(DomainEvent):
 @dataclass
 class ProjectDeletedEvent(DomainEvent):
     """Event fired when a project is deleted"""
-    name: str = None
-    
+    name: Optional[str] = None

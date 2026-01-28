@@ -47,4 +47,6 @@ class Settings(BaseSettings):
     class Config:
         env_file: str = ".env"
 
+
+# Global instance
 settings = Settings()
